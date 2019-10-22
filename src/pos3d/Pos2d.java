@@ -22,6 +22,9 @@ package pos3d;
  * statement, but as I update the library I will optimize where needed. If you are concerned with performance, then I would suggest performing all of your
  * transformations in groups corresponding to the coordinate system required by those transformations. This would remove unnecessary conversions.
  *  
+ * <p><i>If you find a bug or want a feature that doesn't currently exist, open an issue on the GitHub project for this library, at <a
+ * href="https://github.com/SerrpentDagger/positionlib/issues">this site</a>.</i>
+ * 
  * @author SerpentDagger (M. H.)
  * 
  * <p>--------------------------------------------------------------------

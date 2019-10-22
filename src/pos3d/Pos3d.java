@@ -10,27 +10,28 @@ package pos3d;
  * <p><b>The Pos3d class is different from the Alt3d in that the Y and Z axis are swapped.
  * In this system, Z is the vertical axis, and Y is the horizontal axis marking the 0-angle direction.</b>
  * 
- * <p>An instance of this class stores a 3D position, involving 6 doubles, an int, and an uninitialized Pos3d4 (null).
+ * <p>An instance of this class stores a 3D position, involving 6 doubles, an int, and an uninitialized Pos3d (null).
  * 
- * <p>With a Pos3d4 object, you can easily perform a wide variety of complex transformations on the 3D position stored within it, all of which function
- * properly on any coordinate system type supported by Pos3d4.
+ * <p>With a Pos3d object, you can easily perform a wide variety of complex transformations on the 3D position stored within it, all of which function
+ * properly on any coordinate system type supported by Pos3d.
  * 
- * <p>All transformation methods are chainable, meaning they return either this, or a new Pos3d4, with updated values,
+ * <p>All transformation methods are chainable, meaning they return either this, or a new Pos3d, with updated values,
  * depending on whether you use a clean method or not.
  * 
- * <p>By default, transformation methods <b>do</b> alter the values of the Pos3d4 you call them on (they will <i>never</i> alter the values of parameters).
+ * <p>By default, transformation methods <b>do</b> alter the values of the Pos3d you call them on (they will <i>never</i> alter the values of parameters).
  * This is very helpful in various situations, and means less object-creation in general.
- * If you do need a new Pos3d4, however, there is a "clean" version of every transformation method that
- * will return a new Pos3d4 with the values that would otherwise have been assigned to this. The new Pos3d4 will have the checkpoint of this as well.
+ * If you do need a new Pos3d, however, there is a "clean" version of every transformation method that
+ * will return a new Pos3d with the values that would otherwise have been assigned to this. The new Pos3d will have the checkpoint of this as well.
  * 
  * <p>Checkpoints can be set in the middle of a method chain by calling {@link Pos3d#setCheckpoint()} or {@link Pos3d#setCheckpoint(Pos3d)}
- * on the Pos3d4 object. You can revert to a set checkpoint by calling {@link Pos3d#revert()} on the Pos3d4 object. Reverting does not alter the checkpoint.
+ * on the Pos3d object. You can revert to a set checkpoint by calling {@link Pos3d#revert()} on the Pos3d object. Reverting does not alter the checkpoint.
  * 
  * <p>Methods are well optimized to not undergo unnecessary conversions, and to generally be as efficient as possible. There may be some minor infractions to this
  * statement, but as I update the library I will optimize where needed. If you are concerned with performance, then I would suggest performing all of your
  * transformations in groups corresponding to the coordinate system required by those transformations. This would remove unnecessary conversions.
  * 
- * If you find a bug or want a feature that doesn't currently exist, report/ask on the GitHub project for this library, at this link.
+ * <p><i>If you find a bug or want a feature that doesn't currently exist, open an issue on the GitHub project for this library, at <a
+ * href="https://github.com/SerrpentDagger/positionlib/issues">this site</a>.</i>
  * 
  * @author SerpentDagger (M. H.)
  * 
@@ -64,7 +65,7 @@ public class Pos3d
 		
 	
 	/** 
-	 * New Pos3d4 with cartesian values x, y, z.
+	 * New Pos3d with cartesian values x, y, z.
 	 * @param x
 	 * @param y
 	 * @param z 
@@ -78,7 +79,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * New Pos3d4 with values for specified system.
+	 * New Pos3d with values for specified system.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -156,7 +157,7 @@ public class Pos3d
 	
 	/**
 	 * Convert to Cartesian coordinates (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d toCartesianClean()
 	{
@@ -187,7 +188,7 @@ public class Pos3d
 	
 	/**
 	 * Convert to Spherical coordinates (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d toSphericalClean()
 	{
@@ -216,7 +217,7 @@ public class Pos3d
 	
 	/**
 	 * Convert to Cylindrical coordinates.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d toCylindricalClean()
 	{
@@ -225,7 +226,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and adds toAdd to this.
-	 * @param toAdd Pos3d4 to add to this.
+	 * @param toAdd Pos3d to add to this.
 	 * @return Cartesian addition of toAdd onto this.
 	 */
 	public Pos3d add(Pos3d toAdd)
@@ -241,8 +242,8 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and adds toAdd to this (clean version).
-	 * @param toAdd Pos3d4 to add to this.
-	 * @return new Pos3d4 containing Cartesian addition of toAdd onto this.
+	 * @param toAdd Pos3d to add to this.
+	 * @return new Pos3d containing Cartesian addition of toAdd onto this.
 	 */
 	public Pos3d addClean(Pos3d toAdd)
 	{
@@ -251,7 +252,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and subtracts toSub from this.
-	 * @param toSub Pos3d4 to subtract from this.
+	 * @param toSub Pos3d to subtract from this.
 	 * @return Cartesian subtraction of toSub from this.
 	 */
 	public Pos3d sub(Pos3d toSub)
@@ -267,8 +268,8 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and subtracts toSub from this (clean version).
-	 * @param toSub Pos3d4 to subtract from this.
-	 * @return new Pos3d4 containing Cartesian subtraction of toSub from this.
+	 * @param toSub Pos3d to subtract from this.
+	 * @return new Pos3d containing Cartesian subtraction of toSub from this.
 	 */
 	public Pos3d subClean(Pos3d toSub)
 	{
@@ -276,7 +277,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the add method, using a new Pos3d4 built from the parameters.
+	 * Calls the add method, using a new Pos3d built from the parameters.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -296,7 +297,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the add method, using a new Pos3d4 built from the parameters (clean version).
+	 * Calls the add method, using a new Pos3d built from the parameters (clean version).
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -305,7 +306,7 @@ public class Pos3d
 	 * @param b
 	 * @param c
 	 * @param system
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d addClean(double a, double b, double c, int system)
 	{
@@ -313,7 +314,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the sub method, using a new Pos3d4 built from the parameters.
+	 * Calls the sub method, using a new Pos3d built from the parameters.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -333,7 +334,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the sub method, using a new Pos3d4 built from the parameters (clean version).
+	 * Calls the sub method, using a new Pos3d built from the parameters (clean version).
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -342,7 +343,7 @@ public class Pos3d
 	 * @param b
 	 * @param c
 	 * @param system
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d subClean(double a, double b, double c, int system)
 	{
@@ -351,7 +352,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and multiplies this by toMult (x by x, y by y, z by z).
-	 * @param toMult Pos3d4 to multiply this by.
+	 * @param toMult Pos3d to multiply this by.
 	 * @return Cartesian multiplication of this by toMult.
 	 */
 	public Pos3d mult(Pos3d toMult)
@@ -367,8 +368,8 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and multiplies this by toMult (x by x, y by y, z by z) (clean version).
-	 * @param toMult Pos3d4 to multiply this by.
-	 * @return new Pos3d4 containing Cartesian multiplication of this by toMult.
+	 * @param toMult Pos3d to multiply this by.
+	 * @return new Pos3d containing Cartesian multiplication of this by toMult.
 	 */
 	public Pos3d multClean(Pos3d toMult)
 	{
@@ -403,7 +404,7 @@ public class Pos3d
 	/**
 	 * Scales this by scale (clean version).
 	 * @param scale Scale to multiply this by.
-	 * @return new Pos3d4 containing scaling of this by scale.
+	 * @return new Pos3d containing scaling of this by scale.
 	 */
 	public Pos3d scaleClean(double scale)
 	{
@@ -411,7 +412,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the mult method, using a new Pos3d4 built from the parameters.
+	 * Calls the mult method, using a new Pos3d built from the parameters.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -431,7 +432,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the mult method, using a new Pos3d4 built from the parameters (clean version).
+	 * Calls the mult method, using a new Pos3d built from the parameters (clean version).
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -440,7 +441,7 @@ public class Pos3d
 	 * @param b
 	 * @param c
 	 * @param system
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d multClean(double a, double b, double c, int system)
 	{
@@ -449,7 +450,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and divides this by toDivi (x by x, y by y, z by z).
-	 * @param toDivi Pos3d4 to divide this by.
+	 * @param toDivi Pos3d to divide this by.
 	 * @return Cartesian division of this by toDivi.
 	 */
 	public Pos3d divi(Pos3d toDivi)
@@ -465,8 +466,8 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and divides this by toDivi (x by x, y by y, z by z) (clean version).
-	 * @param toDivi Pos3d4 to divide this by.
-	 * @return new Pos3d4 containing Cartesian division of this by toDivi.
+	 * @param toDivi Pos3d to divide this by.
+	 * @return new Pos3d containing Cartesian division of this by toDivi.
 	 */
 	public Pos3d diviClean(Pos3d toDivi)
 	{
@@ -474,7 +475,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the divi method, using a new Pos3d4 built from the parameters.
+	 * Calls the divi method, using a new Pos3d built from the parameters.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -494,7 +495,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Calls the divi method, using a new Pos3d4 built from the parameters.
+	 * Calls the divi method, using a new Pos3d built from the parameters.
 	 * <p>If system is...
 	 * <p>Cartesian, (a, b, c) -> (x, y, z)
 	 * <p>Spherical, (a, b, c) -> (spherical magnitude, rotation around z-axis, rotation from horizontal)
@@ -503,7 +504,7 @@ public class Pos3d
 	 * @param b
 	 * @param c
 	 * @param system
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d diviClean(double a, double b, double c, int system)
 	{
@@ -526,7 +527,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and squares the individual (x, y, z) values (clean version).
-	 * @return new Pos3d4 containing Cartesian square of this.
+	 * @return new Pos3d containing Cartesian square of this.
 	 */
 	public Pos3d sqrClean()
 	{
@@ -549,7 +550,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and takes the square root of the individual (x, y, z) values (clean version).
-	 * @return new Pos3d4 containing Cartesian square root of this.
+	 * @return new Pos3d containing Cartesian square root of this.
 	 */
 	public Pos3d sqrtClean()
 	{
@@ -574,7 +575,7 @@ public class Pos3d
 	/**
 	 * Converts to Cartesian and takes the square root of the individual (x, y, z) values (clean version).
 	 * <p>Always returns positive values.
-	 * @return new Pos3d4 containing positive Cartesian square root of this.
+	 * @return new Pos3d containing positive Cartesian square root of this.
 	 */
 	public Pos3d sqrtPositiveClean()
 	{
@@ -597,7 +598,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and squares the individual (x, y, z) values while preserving sign (clean version).
-	 * @return new Pos3d4 containing Cartesian square of this, preserving signs.
+	 * @return new Pos3d containing Cartesian square of this, preserving signs.
 	 */
 	public Pos3d sqrPreserveSignClean()
 	{
@@ -620,7 +621,7 @@ public class Pos3d
 	
 	/**
 	 * Converts to Cartesian and takes the square root of the individual (x, y, z) values while preserving sign (clean version).
-	 * @return new Pos3d4 containing Cartesian square root of this, preserving signs.
+	 * @return new Pos3d containing Cartesian square root of this, preserving signs.
 	 */
 	public Pos3d sqrtPreserveSignClean()
 	{
@@ -686,7 +687,7 @@ public class Pos3d
 	/**
 	 * Set values of this to values of setTo (checkpoint not included) (clean version).
 	 * @param setTo Values to put into this.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setToClean(Pos3d setTo)
 	{
@@ -703,7 +704,7 @@ public class Pos3d
 	 * @param b
 	 * @param c
 	 * @param system
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setToClean(double a, double b, double c, int system)
 	{
@@ -735,7 +736,7 @@ public class Pos3d
 	/**
 	 * Converts to coordinate system specified (clean version).
 	 * @param system System to convert to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d toSystemClean(int system)
 	{
@@ -756,7 +757,7 @@ public class Pos3d
 	
 	/**
 	 * Sets z to 0, ang2 to 0.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d flattenClean()
 	{
@@ -802,7 +803,7 @@ public class Pos3d
 	 * the vertical angle resides in the second or third quadrant, in the manner one would expect from increasing any angle.
 	 * 
 	 * @param radians Radian value to rotate by.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d rotateAroundYClean(double radians)
 	{
@@ -841,7 +842,7 @@ public class Pos3d
 	 * the vertical angle resides in the second or third quadrant, in the manner one would expect from increasing any angle.
 	 * 
 	 * @param radians Radian value to rotate by.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d rotateVerticalClean(double radians)
 	{
@@ -864,7 +865,7 @@ public class Pos3d
 	/**
 	 * Sets the Spherical magnitude of this (clean version).
 	 * @param mag new Spherical magnitude.
-	 * @return new Pos3d4 with specified Spherical magnitude.
+	 * @return new Pos3d with specified Spherical magnitude.
 	 */
 	public Pos3d setMagSClean(double mag)
 	{
@@ -887,7 +888,7 @@ public class Pos3d
 	/**
 	 * Sets the Cylindrical magnitude of this (clean version).
 	 * @param mag new Cylindrical magnitude.
-	 * @return new Pos3d4 with specified Cylindrical magnitude.
+	 * @return new Pos3d with specified Cylindrical magnitude.
 	 */
 	public Pos3d setMagCClean(double mag)
 	{
@@ -919,7 +920,7 @@ public class Pos3d
 	
 	/**
 	 * Sets this's checkpoint to checkpoint.
-	 * @param checkpoint Pos3d4 to become this's checkpoint.
+	 * @param checkpoint Pos3d to become this's checkpoint.
 	 * @return this.
 	 */
 	public Pos3d setCheckpoint(Pos3d checkpoint)
@@ -930,9 +931,9 @@ public class Pos3d
 	}
 	
 	/**
-	 * Sets checkpoint of new Pos3d4 to checkpoint.
-	 * @param checkpoint Pos3d4 to become new Pos3d4's checkpoint
-	 * @return new Pos3d4 with checkpoint checkpoint, and values of this.
+	 * Sets checkpoint of new Pos3d to checkpoint.
+	 * @param checkpoint Pos3d to become new Pos3d's checkpoint
+	 * @return new Pos3d with checkpoint checkpoint, and values of this.
 	 */
 	public Pos3d setCheckpointClean(Pos3d checkpoint)
 	{
@@ -940,8 +941,8 @@ public class Pos3d
 	}
 	
 	/**
-	 * Sets checkpoint of new Pos3d4 to this.
-	 * @return new Pos3d4 with checkpoint this, and values of this.
+	 * Sets checkpoint of new Pos3d to this.
+	 * @return new Pos3d with checkpoint this, and values of this.
 	 */
 	public Pos3d setCheckpointClean()
 	{
@@ -960,8 +961,8 @@ public class Pos3d
 	}
 	
 	/**
-	 * Reverts new Pos3d4 to state saved in checkpoint (checkpoint copied from this to new.)
-	 * @return new Pos3d4 with values of this's checkpoint, and checkpoint of this's checkpoint.
+	 * Reverts new Pos3d to state saved in checkpoint (checkpoint copied from this to new.)
+	 * @return new Pos3d with values of this's checkpoint, and checkpoint of this's checkpoint.
 	 */
 	public Pos3d revertClean()
 	{
@@ -969,7 +970,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return String representation of this Pos3d4. Value order as follows: {x y z mag ang1 ang2 system ("null" if checkpoint == null, else checkpoint.toString())}
+	 * @return String representation of this Pos3d. Value order as follows: {x y z mag ang1 ang2 system ("null" if checkpoint == null, else checkpoint.toString())}
 	 */
 	@Override
 	public String toString()
@@ -979,7 +980,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return The "programmer friendly" String representing this Pos3d4, including names, colons, and commas separating values.
+	 * @return The "programmer friendly" String representing this Pos3d, including names, colons, and commas separating values.
 	 */
 	public String toStringPF()
 	{
@@ -998,7 +999,7 @@ public class Pos3d
 	
 	/**
 	 * Flips this across the origin (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d flipClean()
 	{
@@ -1016,7 +1017,7 @@ public class Pos3d
 	
 	/**
 	 * Flips this across the origin and doubles (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d flipAndDoubleClean()
 	{
@@ -1049,7 +1050,7 @@ public class Pos3d
 	
 	/**
 	 * Convenient addition of this onto this (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d doublePosClean()
 	{
@@ -1057,7 +1058,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return The Spherical magnitude of this Pos3d4.
+	 * @return The Spherical magnitude of this Pos3d.
 	 */
 	public double getMagS()
 	{
@@ -1065,7 +1066,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return The Cylindrical magnitude of this Pos3d4.
+	 * @return The Cylindrical magnitude of this Pos3d.
 	 */
 	public double getMagC()
 	{
@@ -1073,7 +1074,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return The Cartesian x of this Pos3d4.
+	 * @return The Cartesian x of this Pos3d.
 	 */
 	public double getX()
 	{
@@ -1081,7 +1082,7 @@ public class Pos3d
 	}
 
 	/**
-	 * @return The Cartesian y of this Pos3d4.
+	 * @return The Cartesian y of this Pos3d.
 	 */
 	public double getY()
 	{
@@ -1121,7 +1122,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * @return The Cartesian Z of this Pos3d4.
+	 * @return The Cartesian Z of this Pos3d.
 	 */
 	public double getZ()
 	{
@@ -1129,7 +1130,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Get the quadrant this Pos3d4 is in. Zeros count as positive.
+	 * Get the quadrant this Pos3d is in. Zeros count as positive.
 	 * <p>Converts to Cartesian to get values, then back to original.
 	 * @return One of the public static final Q### variables in this class, depending on the quadrant.
 	 * <p>(E.G, QNPN -> Quadrant Negative Positive Negative, in Cartesian coordinate order)
@@ -1170,7 +1171,7 @@ public class Pos3d
 	}
 	
 	/**
-	 * Get the quadrant this Pos3d4 is in. Zeros count as negative.
+	 * Get the quadrant this Pos3d is in. Zeros count as negative.
 	 * <p>Converts to Cartesian to get values, then back to original.
 	 * @return One of the public static final Q### variables in this class, depending on the quadrant.
 	 * <p>(E.G, QNPN -> Quadrant Negative Positive Negative, in Cartesian coordinate order)
@@ -1249,7 +1250,7 @@ public class Pos3d
 	 * the vertical angle resides in the second or third quadrant, in the manner one would expect from increasing any angle.
 	 * 
 	 * @param radians Radian value to rotate by.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d rotateAroundXClean(double radians)
 	{
@@ -1295,7 +1296,7 @@ public class Pos3d
 	 * the vertical angle resides in the second or third quadrant, in the manner one would expect from increasing any angle.
 	 * 
 	 * @param radians Radian value to rotate by.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d rotateAroundZClean(double radians)
 	{
@@ -1343,7 +1344,7 @@ public class Pos3d
 	 * 
 	 * @param axis One endpoint of the axis of rotation, the other is the origin.
 	 * @param radians Radian value to rotate by.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d rotateAroundAxisClean(Pos3d axis, double radians)
 	{
@@ -1387,7 +1388,7 @@ public class Pos3d
 	/**
 	 * Sets the Cartesian x value of this (clean version).
 	 * @param x Value to set x to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setXClean(double x)
 	{
@@ -1397,7 +1398,7 @@ public class Pos3d
 	/**
 	 * Sets the Cartesian y value of this (clean version).
 	 * @param y Value to set y to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setYClean(double y)
 	{
@@ -1407,7 +1408,7 @@ public class Pos3d
 	/**
 	 * Sets the Cartesian z value of this (clean version).
 	 * @param z Value to set z to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setZClean(double z)
 	{
@@ -1447,7 +1448,7 @@ public class Pos3d
 	/**
 	 * Sets the rotation around the y axis of this (clean version).
 	 * @param ang1 Value to set ang1 to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setAng1Clean(double ang1)
 	{
@@ -1457,7 +1458,7 @@ public class Pos3d
 	/**
 	 * Sets the rotation from the horizontal of this (clean version).
 	 * @param ang2 Value to set ang2 to.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d setAng2Clean(double ang2)
 	{
@@ -1517,7 +1518,7 @@ public class Pos3d
 	
 	/**
 	 * Mirrors this across the XY plane (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d mirrorAcrossXYClean()
 	{
@@ -1526,7 +1527,7 @@ public class Pos3d
 	
 	/**
 	 * Mirrors this across the YZ plane (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d mirrorAcrossYZClean()
 	{
@@ -1535,7 +1536,7 @@ public class Pos3d
 	
 	/**
 	 * Mirrors this across the ZX plane (clean version).
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d mirrorAcrossZXClean()
 	{
@@ -1578,7 +1579,7 @@ public class Pos3d
 	 * Mirrors this across the arbitrary plane defined by the two parameters and the origin (clean version).
 	 * @param planePoint1 First point in the plane that will be mirrored across.
 	 * @param planePoint2 Second point in the plane that will be mirrored across.
-	 * @return new Pos3d4 with updated values.
+	 * @return new Pos3d with updated values.
 	 */
 	public Pos3d mirrorAcrossPlaneClean(Pos3d planePoint1, Pos3d planePoint2)
 	{
