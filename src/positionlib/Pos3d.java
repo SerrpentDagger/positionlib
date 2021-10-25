@@ -1551,26 +1551,17 @@ public class Pos3d
 	{
 		double s = dotProduct(onto) / onto.getMagS();
 		return setTo(onto).setMagS(s);
-		
-	/*	P1.setTo(onto);
-		double ang1 = P1.getAng1();
-		
-		rotateAroundY(-ang1);
-		P1.rotateAroundY(-ang1);
-		
-		double ang2 = Math.atan2(P1.getY(), P1.getZ());
-		rotateAroundX(ang2);
-		
-		double ang3 = Math.atan2(getY(), getX());
-		rotateAroundZ(-ang3);
-		
-		setX(0);
-		
-		rotateAroundX(-ang2);
-		
-		rotateAroundY(ang1);
-		
-		return this;*/
+	}
+	
+	/**
+	 * Linearly interpolates this towards to, resulting in a point positioned at the given ratio between this and to.
+	 * @param to
+	 * @param ratio
+	 * @return this with updated values.
+	 */
+	public Pos3d lerp(Pos3d to, double ratio)
+	{
+		return sub(to).scale(1 - ratio).add(to);
 	}
 	
 	/**
@@ -1825,6 +1816,8 @@ public class Pos3d
 		if (Math.abs(alpha) > EQUALS_ERROR)
 			rotateAroundY(alpha);
 		
+		this.y *= Math.signum(relative.y);
+		
 		add(relative);
 		
 		relative = null;
@@ -2004,6 +1997,22 @@ public class Pos3d
 	{
 		EQUALS_ERROR = val;
 		EQUALS_ERROR_SQR = sqr(val);
+	}
+	
+	/**
+	 * @return {@linkplain Pos3d#EQUALS_ERROR}
+	 */
+	public static double getEqualsError()
+	{
+		return EQUALS_ERROR;
+	}
+	
+	/**
+	 * @return {@linkplain Pos3d#EQUALS_ERROR_SQR}
+	 */
+	public static double getEqualsErrorSqr()
+	{
+		return EQUALS_ERROR_SQR;
 	}
 	
 	/** @return val * val */
