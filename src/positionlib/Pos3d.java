@@ -241,7 +241,7 @@ public class Pos3d
 			mag = Math.sqrt((x*x) + (y*y) + (z*z));
 			ang1 = Math.atan2(x, z);
 			if (x == 0 && z == 0)
-				ang2 = Math.PI / 2;
+				ang2 = Math.signum(y) * Math.PI / 2;
 			else
 				ang2 = Math.atan(y / Math.sqrt((x*x) + (z*z)));
 		}
